@@ -11,8 +11,6 @@ import com.xsh.blog.model.Vo.ContentVoExample;
 import com.xsh.blog.model.Vo.UserVo;
 import com.xsh.blog.service.IContentService;
 import com.xsh.blog.service.ILogService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller()
 @RequestMapping("admin/page")
 public class PageController extends BaseController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(PageController.class);
 
     @Resource
     private IContentService contentsService;

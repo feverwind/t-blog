@@ -13,9 +13,8 @@ import com.xsh.blog.service.ICommentService;
 import com.xsh.blog.service.IContentService;
 import com.xsh.blog.utils.DateKit;
 import com.xsh.blog.utils.TaleUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,8 +26,8 @@ import java.util.List;
  * Created by BlueT on 2017/3/16.
  */
 @Service
+@Slf4j
 public class CommentServiceImpl implements ICommentService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
 
     @Resource
     private CommentVoMapper commentDao;

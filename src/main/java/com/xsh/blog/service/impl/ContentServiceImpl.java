@@ -16,9 +16,8 @@ import com.xsh.blog.service.IRelationshipService;
 import com.xsh.blog.utils.DateKit;
 import com.xsh.blog.utils.TaleUtils;
 import com.xsh.blog.utils.Tools;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,8 +28,8 @@ import java.util.List;
  * Created by Administrator on 2017/3/13 013.
  */
 @Service
+@Slf4j
 public class ContentServiceImpl implements IContentService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ContentServiceImpl.class);
 
     @Resource
     private ContentVoMapper contentDao;
@@ -46,6 +45,9 @@ public class ContentServiceImpl implements IContentService {
 
     @Override
     @Transactional
+    /**
+     * 发表文章
+     */
     public String publish(ContentVo contents) {
         if (null == contents) {
             return "文章对象为空";
@@ -71,11 +73,17 @@ public class ContentServiceImpl implements IContentService {
             if (contents.getSlug().length() < 5) {
                 return "路径太短了";
             }
-            if (!TaleUtils.isPath(contents.getSlug())) return "您输入的路径不合法";
+
+            if (!TaleUtils.isPath(contents.getSlug())) {
+                return "您输入的路径不合法";
+            }
+
             ContentVoExample contentVoExample = new ContentVoExample();
             contentVoExample.createCriteria().andTypeEqualTo(contents.getType()).andStatusEqualTo(contents.getSlug());
             long count = contentDao.countByExample(contentVoExample);
-            if (count > 0) return "该路径已经存在，请重新输入";
+            if (count > 0) {
+                return "该路径已经存在，请重新输入";
+            }
         } else {
             contents.setSlug(null);
         }
@@ -99,38 +107,43 @@ public class ContentServiceImpl implements IContentService {
 
     @Override
     public PageInfo<ContentVo> getContents(Integer p, Integer limit) {
-        LOGGER.debug("Enter getContents method");
+        log.debug("Enter getContents method");
         ContentVoExample example = new ContentVoExample();
         example.setOrderByClause("created desc");
         example.createCriteria().andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
         PageHelper.startPage(p, limit);
         List<ContentVo> data = contentDao.selectByExampleWithBLOBs(example);
         PageInfo<ContentVo> pageInfo = new PageInfo<>(data);
-        LOGGER.debug("Exit getContents method");
+        log.debug("Exit getContents method");
         return pageInfo;
     }
 
     @Override
+    /**
+     * 指定ID获取文章内容
+     */
     public ContentVo getContents(String id) {
-        if (StringUtils.isNotBlank(id)) {
-            if (Tools.isNumber(id)) {
-                ContentVo contentVo = contentDao.selectByPrimaryKey(Integer.valueOf(id));
-                if (contentVo != null) {
-                    contentVo.setHits(contentVo.getHits() + 1);
-                    contentDao.updateByPrimaryKey(contentVo);
-                }
-                return contentVo;
-            } else {
-                ContentVoExample contentVoExample = new ContentVoExample();
-                contentVoExample.createCriteria().andSlugEqualTo(id);
-                List<ContentVo> contentVos = contentDao.selectByExampleWithBLOBs(contentVoExample);
-                if (contentVos.size() != 1) {
-                    throw new BusinessException("query content by id and return is not one");
-                }
-                return contentVos.get(0);
-            }
+        /* id 无效直接返回 */
+        if (StringUtils.isBlank(id)) {
+            return null;
         }
-        return null;
+
+        if (Tools.isNumber(id)) {
+            ContentVo contentVo = contentDao.selectByPrimaryKey(Integer.valueOf(id));
+            if (contentVo != null) {
+                contentVo.setHits(contentVo.getHits() + 1);
+                contentDao.updateByPrimaryKey(contentVo);
+            }
+            return contentVo;
+        } else {
+            ContentVoExample contentVoExample = new ContentVoExample();
+            contentVoExample.createCriteria().andSlugEqualTo(id);
+            List<ContentVo> contentVos = contentDao.selectByExampleWithBLOBs(contentVoExample);
+            if (contentVos.size() != 1) {
+                throw new BusinessException("query content by id and return is not one");
+            }
+            return contentVos.get(0);
+        }
     }
 
     @Override

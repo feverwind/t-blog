@@ -11,9 +11,8 @@ import com.xsh.blog.service.ILogService;
 import com.xsh.blog.service.IOptionService;
 import com.xsh.blog.service.ISiteService;
 import com.xsh.blog.utils.GsonUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,10 +25,10 @@ import java.util.Map;
 /**
  * Created by wangq on 2017/3/20.
  */
+@Slf4j
 @Controller
 @RequestMapping("/admin/setting")
 public class SettingController extends BaseController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SettingController.class);
 
     @Resource
     private IOptionService optionService;
@@ -104,7 +103,7 @@ public class SettingController extends BaseController {
             if (e instanceof BusinessException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }

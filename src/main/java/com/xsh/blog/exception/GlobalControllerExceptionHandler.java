@@ -1,7 +1,6 @@
 package com.xsh.blog.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -12,12 +11,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @Modified By :
  */
 @ControllerAdvice
+@Slf4j
 public class GlobalControllerExceptionHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalControllerExceptionHandler.class);
 
     @ExceptionHandler(value = BusinessException.class)
     public String businessException(Exception e) {
-        LOGGER.error("find exception:e={}",e.getMessage());
+        log.error("find exception:e={}",e.getMessage());
         e.printStackTrace();
         return "comm/error_500";
     }
@@ -25,7 +24,7 @@ public class GlobalControllerExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public String exception(Exception e){
-        LOGGER.error("find exception:e={}",e.getMessage());
+        log.error("find exception:e={}",e.getMessage());
         e.printStackTrace();
         return "comm/error_404";
     }

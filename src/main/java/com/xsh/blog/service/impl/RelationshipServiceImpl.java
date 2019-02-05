@@ -4,8 +4,7 @@ import com.xsh.blog.dao.RelationshipVoMapper;
 import com.xsh.blog.model.Vo.RelationshipVoExample;
 import com.xsh.blog.model.Vo.RelationshipVoKey;
 import com.xsh.blog.service.IRelationshipService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,8 +14,8 @@ import java.util.List;
  * Created by BlueT on 2017/3/18.
  */
 @Service
+@Slf4j
 public class RelationshipServiceImpl implements IRelationshipService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RelationshipServiceImpl.class);
 
     @Resource
     private RelationshipVoMapper relationshipVoMapper;
@@ -54,7 +53,7 @@ public class RelationshipServiceImpl implements IRelationshipService {
 
     @Override
     public Long countById(Integer cid, Integer mid) {
-        LOGGER.debug("Enter countById method:cid={},mid={}",cid,mid);
+        log.debug("Enter countById method:cid={},mid={}",cid,mid);
         RelationshipVoExample relationshipVoExample = new RelationshipVoExample();
         RelationshipVoExample.Criteria criteria = relationshipVoExample.createCriteria();
         if (cid != null) {
@@ -64,7 +63,7 @@ public class RelationshipServiceImpl implements IRelationshipService {
             criteria.andMidEqualTo(mid);
         }
         long num = relationshipVoMapper.countByExample(relationshipVoExample);
-        LOGGER.debug("Exit countById method return num={}",num);
+        log.debug("Exit countById method return num={}",num);
         return num;
     }
 }

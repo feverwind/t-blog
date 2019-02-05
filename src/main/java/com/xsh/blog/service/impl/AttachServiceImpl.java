@@ -7,8 +7,7 @@ import com.xsh.blog.model.Vo.AttachVo;
 import com.xsh.blog.model.Vo.AttachVoExample;
 import com.xsh.blog.service.IAttachService;
 import com.xsh.blog.utils.DateKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +18,8 @@ import java.util.List;
  * Created by wangq on 2017/3/20.
  */
 @Service
+@Slf4j
 public class AttachServiceImpl implements IAttachService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AttachServiceImpl.class);
 
     @Resource
     private AttachVoMapper attachDao;

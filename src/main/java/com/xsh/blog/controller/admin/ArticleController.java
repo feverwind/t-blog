@@ -16,8 +16,6 @@ import com.xsh.blog.service.IContentService;
 import com.xsh.blog.service.ILogService;
 import com.xsh.blog.service.IMetaService;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +32,6 @@ import java.util.List;
 @Transactional(rollbackFor = BusinessException.class)
 public class ArticleController extends BaseController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
 
     @Resource
     private IContentService contentsService;

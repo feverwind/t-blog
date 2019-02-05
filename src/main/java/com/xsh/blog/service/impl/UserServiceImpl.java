@@ -7,8 +7,6 @@ import com.xsh.blog.model.Vo.UserVoExample;
 import com.xsh.blog.service.IUserService;
 import com.xsh.blog.utils.TaleUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +18,6 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements IUserService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Resource
     private UserVoMapper userDao;

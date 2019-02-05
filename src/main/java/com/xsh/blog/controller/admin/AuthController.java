@@ -9,10 +9,9 @@ import com.xsh.blog.model.Vo.UserVo;
 import com.xsh.blog.service.ILogService;
 import com.xsh.blog.service.IUserService;
 import com.xsh.blog.utils.TaleUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -28,11 +27,10 @@ import java.io.IOException;
  * Created by BlueT on 2017/3/11.
  */
 @Controller
+@Slf4j
 @RequestMapping("/admin")
 @Transactional(rollbackFor = BusinessException.class)
 public class AuthController extends BaseController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
     @Resource
     private IUserService usersService;
@@ -71,7 +69,7 @@ public class AuthController extends BaseController {
             if (e instanceof BusinessException) {
                 msg = e.getMessage();
             } else {
-                LOGGER.error(msg, e);
+                log.error(msg, e);
             }
             return RestResponseBo.fail(msg);
         }
@@ -96,7 +94,7 @@ public class AuthController extends BaseController {
             response.sendRedirect("/admin/login");
         } catch (IOException e) {
             e.printStackTrace();
-            LOGGER.error("注销失败", e);
+            log.error("注销失败", e);
         }
     }
 

@@ -4,14 +4,13 @@ import com.xsh.blog.constant.WebConst;
 import com.xsh.blog.controller.admin.AttachController;
 import com.xsh.blog.exception.BusinessException;
 import com.xsh.blog.model.Vo.UserVo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.commonmark.Extension;
 import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.imageio.ImageIO;
@@ -36,8 +35,8 @@ import java.util.regex.Pattern;
  * <p>
  * Created by 13 on 2017/2/21.
  */
+@Slf4j
 public class TaleUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TaleUtils.class);
     /**
      * 一个月
      */
@@ -81,7 +80,7 @@ public class TaleUtils {
             InputStream resourceAsStream = new FileInputStream(fileName);
             properties.load(resourceAsStream);
         } catch (BusinessException | IOException e) {
-            LOGGER.error("get properties file fail={}", e.getMessage());
+            log.error("get properties file fail={}", e.getMessage());
         }
         return properties;
     }
@@ -257,7 +256,7 @@ public class TaleUtils {
         try {
             response.sendRedirect(Commons.site_url());
         } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
     }
 
