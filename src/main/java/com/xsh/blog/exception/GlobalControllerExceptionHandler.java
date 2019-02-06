@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalControllerExceptionHandler {
 
     @ExceptionHandler(value = BusinessException.class)
-    public String businessException(Exception e) {
+    public String businessExceptionHandler(Exception e) {
         log.error("find exception:e={}",e.getMessage());
         e.printStackTrace();
         return "comm/error_500";
@@ -23,7 +23,7 @@ public class GlobalControllerExceptionHandler {
 
 
     @ExceptionHandler(value = Exception.class)
-    public String exception(Exception e){
+    public String exceptionHandler(Exception e){
         log.error("find exception:e={}",e.getMessage());
         e.printStackTrace();
         return "comm/error_404";
