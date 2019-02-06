@@ -21,11 +21,11 @@
         </insert>
         <insert tableName="t_contents">
             <column name="cid" valueNumeric="2"/>
-            <column name="title" value="Hello 河岸飞流"/>
+            <column name="title" value="Hello 梦见山"/>
             <column name="slug"/>
             <column name="created" valueNumeric="1521789380"/>
             <column name="modified" valueNumeric="1521789380"/>
-            <column name="content" value="## Hello  World.&#13;&#10;&#13;&#10;&gt; ...&#13;&#10;&#13;&#10;----------&#13;&#10;&#13;&#10;&#13;&#10;&lt;!--more--&gt;&#13;&#10;&#13;&#10;```java&#13;&#10;public static void main(String[] args){&#13;&#10;    System.out.println(&quot;Hello 河岸飞流.&quot;);&#13;&#10;}&#13;&#10;```"/>
+            <column name="content" value="## Hello  World.&#13;&#10;&#13;&#10;&gt; ...&#13;&#10;&#13;&#10;----------&#13;&#10;&#13;&#10;&#13;&#10;&lt;!--more--&gt;&#13;&#10;&#13;&#10;```java&#13;&#10;public static void main(String[] args){&#13;&#10;    System.out.println(&quot;Hello 梦见山.&quot;);&#13;&#10;}&#13;&#10;```"/>
             <column name="author_id" valueNumeric="1"/>
             <column name="type" value="post"/>
             <column name="status" value="publish"/>
@@ -107,12 +107,12 @@
     <changeSet author="ASUS (generated)" id="1521789629683-3">
         <insert tableName="t_options">
             <column name="name" value="site_description"/>
-            <column name="value" value="河岸飞流"/>
+            <column name="value" value="梦见山"/>
             <column name="description"/>
         </insert>
         <insert tableName="t_options">
             <column name="name" value="site_keywords"/>
-            <column name="value" value="河岸飞流"/>
+            <column name="value" value="梦见山"/>
             <column name="description"/>
         </insert>
         <insert tableName="t_options">
@@ -127,7 +127,7 @@
         </insert>
         <insert tableName="t_options">
             <column name="name" value="site_title"/>
-            <column name="value" value="河岸飞流"/>
+            <column name="value" value="梦见山"/>
             <column name="description" value=""/>
         </insert>
         <insert tableName="t_options">
