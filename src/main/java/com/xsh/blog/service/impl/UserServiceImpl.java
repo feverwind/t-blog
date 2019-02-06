@@ -25,13 +25,15 @@ public class UserServiceImpl implements IUserService {
     @Override
     @Transactional
     public Integer insertUser(UserVo userVo) {
-        Integer uid = null;
-        if (StringUtils.isNotBlank(userVo.getUsername()) && StringUtils.isNotBlank(userVo.getEmail())) {
-//            用户密码加密
-            String encodePwd = TaleUtils.MD5encode(userVo.getUsername() + userVo.getPassword());
-            userVo.setPassword(encodePwd);
-            userDao.insertSelective(userVo);
+
+        if (StringUtils.isBlank(userVo.getUsername()) || StringUtils.isNotBlank(userVo.getEmail())){
+            throw new BusinessException("用户名和密码不能为空");
         }
+
+        //  用户密码加密
+        String encodePwd = TaleUtils.MD5encode(userVo.getUsername() + userVo.getPassword());
+        userVo.setPassword(encodePwd);
+        userDao.insertSelective(userVo);
         return userVo.getUid();
     }
 
@@ -49,6 +51,8 @@ public class UserServiceImpl implements IUserService {
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             throw new BusinessException("用户名和密码不能为空");
         }
+
+        /* 先检查用户是否存在 */
         UserVoExample example = new UserVoExample();
         UserVoExample.Criteria criteria = example.createCriteria();
         criteria.andUsernameEqualTo(username);
@@ -56,6 +60,8 @@ public class UserServiceImpl implements IUserService {
         if (count < 1) {
             throw new BusinessException("不存在该用户");
         }
+
+        /* 检查密码是否正确 */
         String pwd = TaleUtils.MD5encode(username + password);
         criteria.andPasswordEqualTo(pwd);
         List<UserVo> userVos = userDao.selectByExample(example);
@@ -71,6 +77,7 @@ public class UserServiceImpl implements IUserService {
         if (null == userVo || null == userVo.getUid()) {
             throw new BusinessException("userVo is null");
         }
+
         int i = userDao.updateByPrimaryKeySelective(userVo);
         if (i != 1) {
             throw new BusinessException("update user by uid and retrun is not one");

@@ -15,7 +15,7 @@ public class UserVoExample {
     private Integer offset;
 
     public UserVoExample() {
-        oredCriteria = new ArrayList<Criteria>();
+        oredCriteria = new ArrayList();
     }
 
     public void setOrderByClause(String orderByClause) {
@@ -88,7 +88,7 @@ public class UserVoExample {
 
         protected GeneratedCriteria() {
             super();
-            criteria = new ArrayList<Criterion>();
+            criteria = new ArrayList();
         }
 
         public boolean isValid() {
