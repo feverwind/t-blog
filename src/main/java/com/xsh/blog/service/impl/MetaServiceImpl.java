@@ -65,20 +65,24 @@ public class MetaServiceImpl implements IMetaService {
 
     @Override
     public List<MetaDto> getMetaList(String type, String orderby, int limit) {
-        if (StringUtils.isNotBlank(type)) {
-            if (StringUtils.isBlank(orderby)) {
-                orderby = "count desc, a.mid desc";
-            }
-            if (limit < 1 || limit > WebConst.MAX_POSTS) {
-                limit = 10;
-            }
-            Map<String, Object> paraMap = new HashMap<>();
-            paraMap.put("type", type);
-            paraMap.put("order", orderby);
-            paraMap.put("limit", limit);
-            return metaDao.selectFromSql(paraMap);
+        if (StringUtils.isBlank(type)) {
+            return null;
         }
-        return null;
+
+        if (StringUtils.isBlank(orderby)) {
+            orderby = "count desc, a.mid desc";
+        }
+
+        if (limit < 1 || limit > WebConst.MAX_POSTS) {
+            limit = 10;
+        }
+
+        Map<String, Object> paraMap = new HashMap<>(10);
+        paraMap.put("type", type);
+        paraMap.put("order", orderby);
+        paraMap.put("limit", limit);
+        return metaDao.selectFromSql(paraMap);
+
     }
 
     @Override
