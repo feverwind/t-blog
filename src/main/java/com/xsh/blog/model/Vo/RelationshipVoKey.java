@@ -1,10 +1,13 @@
 package com.xsh.blog.model.Vo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * @author 
  */
+@Data
 public class RelationshipVoKey implements Serializable {
     /**
      * 内容主键
@@ -17,20 +20,4 @@ public class RelationshipVoKey implements Serializable {
     private Integer mid;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getCid() {
-        return cid;
-    }
-
-    public void setCid(Integer cid) {
-        this.cid = cid;
-    }
-
-    public Integer getMid() {
-        return mid;
-    }
-
-    public void setMid(Integer mid) {
-        this.mid = mid;
-    }
 }

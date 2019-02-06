@@ -383,6 +383,7 @@
     </set>
     where coid = #{coid,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xsh.blog.model.Vo.CommentVo">
     update t_comments
     set cid = #{cid,jdbcType=INTEGER},
@@ -400,6 +401,7 @@
       content = #{content,jdbcType=LONGVARCHAR}
     where coid = #{coid,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.xsh.blog.model.Vo.CommentVo">
     update t_comments
     set cid = #{cid,jdbcType=INTEGER},
