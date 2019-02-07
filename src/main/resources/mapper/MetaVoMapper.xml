@@ -44,6 +44,7 @@
       </foreach>
     </where>
   </sql>
+
   <sql id="Update_By_Example_Where_Clause">
     <where>
       <foreach collection="example.oredCriteria" item="criteria" separator="or">
@@ -73,9 +74,11 @@
       </foreach>
     </where>
   </sql>
+
   <sql id="Base_Column_List">
     mid, name, slug, type, description, sort, parent
   </sql>
+
   <select id="selectByExample" parameterType="com.xsh.blog.model.Vo.MetaVoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -98,22 +101,26 @@
       </if>
     </if>
   </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from t_metas
     where mid = #{mid,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_metas
     where mid = #{mid,jdbcType=INTEGER}
   </delete>
+
   <delete id="deleteByExample" parameterType="com.xsh.blog.model.Vo.MetaVoExample">
     delete from t_metas
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
   <insert id="insert" parameterType="com.xsh.blog.model.Vo.MetaVo" useGeneratedKeys="true" keyProperty="mid">
     insert into t_metas (mid, name, slug,
       type, description, sort,
@@ -122,6 +129,7 @@
       #{type,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER},
       #{parent,jdbcType=INTEGER})
   </insert>
+
   <insert id="insertSelective" parameterType="com.xsh.blog.model.Vo.MetaVo" useGeneratedKeys="true" keyProperty="mid">
     insert into t_metas
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -171,12 +179,14 @@
       </if>
     </trim>
   </insert>
+
   <select id="countByExample" parameterType="com.xsh.blog.model.Vo.MetaVoExample" resultType="java.lang.Long">
     select count(*) from t_metas
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
   <update id="updateByExampleSelective" parameterType="map">
     update t_metas
     <set>
@@ -206,6 +216,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
   <update id="updateByExample" parameterType="map">
     update t_metas
     set mid = #{record.mid,jdbcType=INTEGER},
@@ -243,6 +254,7 @@
     </set>
     where mid = #{mid,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.xsh.blog.model.Vo.MetaVo">
     update t_metas
     set name = #{name,jdbcType=VARCHAR},

@@ -339,9 +339,7 @@ public final class Commons {
         final String prefix = "social_";
         Map<String, String> map = new HashMap<>();
         map.put("weibo", WebConst.initConfig.get(prefix + "weibo"));
-        map.put("zhihu", WebConst.initConfig.get(prefix + "zhihu"));
         map.put("github", WebConst.initConfig.get(prefix + "github"));
-        map.put("twitter", WebConst.initConfig.get(prefix + "twitter"));
         return map;
     }
 
