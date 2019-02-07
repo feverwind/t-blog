@@ -1,6 +1,5 @@
-# 个人博客
-[![](https://img.shields.io/badge/JDK-1.8-green.svg "JDK 1.8")]()
-[![](https://img.shields.io/badge/spring--boot-1.5.9--release-green.svg)]()  
+### 来源说明
+本项目fork 自 [t-blog](https://github.com/xieshuang/t-blog)，继承了核心框架，有较大改动
 
 ### 1.涉及技术及工具
 
@@ -9,7 +8,6 @@
 - MyBatis 工具：MyBatis通用Mapper插件
 - MVC 框架：Spring MVC
 - 模板引擎：Thymeleaf
-- Markdown 编辑器：Editor.md
 - 数据库：MySQL、Liquibase、redis
 
 ### 2.部署事宜
@@ -18,7 +16,7 @@
 - 2、安装redis数据库
 - 3、项目打成jar包上传到服务器上
 - 4、执行 `nohup java -jar blog.jar &`
-- 5、浏览器访问 ip:8080即可访问
+- 5、浏览器访问 ip:8090即可访问
 - 6、可以配置nginx进行代理访问
 
 ### 3.其他碎碎念
