@@ -204,15 +204,16 @@ public final class Commons {
      * @return
      */
     public static String show_categories(String categories) throws UnsupportedEncodingException {
-        if (StringUtils.isNotBlank(categories)) {
-            String[] arr = categories.split(",");
-            StringBuffer sbuf = new StringBuffer();
-            for (String c : arr) {
-                sbuf.append("<a href=\"/category/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
-            }
-            return sbuf.toString();
+        if (StringUtils.isBlank(categories)) {
+            return show_categories("默认分类");
         }
-        return show_categories("默认分类");
+
+        String[] arr = categories.split(",");
+        StringBuffer sbuf = new StringBuffer();
+        for (String c : arr) {
+            sbuf.append("<a href=\"/category/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
+        }
+        return sbuf.toString();
     }
 
     /**
