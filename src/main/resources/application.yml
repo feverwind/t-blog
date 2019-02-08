@@ -7,12 +7,39 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://119.3.29.162:3306/blog?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
+    url: jdbc:mysql://127.0.0.1:3306/blog?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true
     username: root
-    password: mingdu2018
+    password: root
     initialSize: 20
     minIdle: 10
     maxActive: 100
+    filters: stat,wall
+#
+#    web-stat-filter:
+#      enabled: true
+#      url-pattern: /*
+#      exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+#
+#    stat-view-servlet:
+#      enabled: true
+#      url-pattern: /druid/*
+#      reset-enable: false
+#      login-username: admin
+#      ogin-password: 123456
+#      allow: 127.0.0.1
+#
+#    filter:
+#      stat:
+#        db-type: mysql
+#        log-slow-sql: true
+#        slow-sql-millis: 5000
+#
+#      wall:
+#        enabled: true
+#        db-type: mysql
+#        config:
+#          delete-allow: false
+#          drop-table-allow: false
 
   thymeleaf:
     prefix: classpath:/templates/
