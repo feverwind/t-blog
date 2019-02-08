@@ -77,19 +77,24 @@ public class AttachController extends BaseController {
         try {
             for (MultipartFile multipartFile : multipartFiles) {
                 String fname = multipartFile.getOriginalFilename();
-                if (multipartFile.getSize() <= WebConst.MAX_FILE_SIZE) {
-                    String fkey = TaleUtils.getFileKey(fname);
-                    String ftype = TaleUtils.isImage(multipartFile.getInputStream()) ? Types.IMAGE.getType() : Types.FILE.getType();
-                    File file = new File(CLASSPATH + fkey);
-                    try {
-                        FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    attachService.save(fname, fkey, ftype, uid);
-                } else {
+                if (multipartFile.getSize() > WebConst.MAX_FILE_SIZE) {
                     errorFiles.add(fname);
+                    continue;
                 }
+
+                String fkey = TaleUtils.getFileKey(fname);
+                String ftype = TaleUtils.isImage(multipartFile.getInputStream()) ? Types.IMAGE.getType() : Types.FILE.getType();
+                File file = new File(CLASSPATH + fkey);
+                try {
+                    FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    errorFiles.add(fname);
+                    continue;
+                }
+
+                /* 文件meta信息存入数据库 */
+                attachService.save(fname, fkey, ftype, uid);
             }
         } catch (Exception e) {
             return RestResponseBo.fail();
