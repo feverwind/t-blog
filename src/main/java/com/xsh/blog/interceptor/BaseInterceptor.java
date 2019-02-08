@@ -51,11 +51,6 @@ public class BaseInterceptor implements HandlerInterceptor {
         //请求拦截处理
         UserVo user = TaleUtils.getLoginUser(request);
         if (null == user) {
-            /* 对css、js、jpg、png 文件进行方形 TODO: 有没有更好的方法? */
-            if (uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".jpg") || uri.endsWith(".png")){
-                return true;
-            }
-
             Integer uid = TaleUtils.getCookieUid(request);
             if (null != uid) {
                 //这里还是有安全隐患,cookie是可以伪造的

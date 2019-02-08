@@ -18,9 +18,13 @@ import javax.annotation.Resource;
 public class WebMvcConfig implements WebMvcConfigurer {
     @Resource
     private BaseInterceptor baseInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(baseInterceptor);
+        /* 对除了 /static/admin/ 目录下的静态文件的访问外进行拦截 */
+        registry.addInterceptor(baseInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/admin/js/**","/admin/images/**", "/admin/css/**");
     }
 
     /**
