@@ -51,6 +51,11 @@ public class BaseInterceptor implements HandlerInterceptor {
         //请求拦截处理
         UserVo user = TaleUtils.getLoginUser(request);
         if (null == user) {
+            /* 对css、js、jpg、png 文件进行方形 TODO: 有没有更好的方法? */
+            if (uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".jpg") || uri.endsWith(".png")){
+                return true;
+            }
+
             Integer uid = TaleUtils.getCookieUid(request);
             if (null != uid) {
                 //这里还是有安全隐患,cookie是可以伪造的
@@ -78,7 +83,9 @@ public class BaseInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
         OptionVo ov = optionService.getOptionByName("site_record");
-        httpServletRequest.setAttribute("commons", commons);//一些工具类和公共方法
+
+        //一些工具类和公共方法
+        httpServletRequest.setAttribute("commons", commons);
         httpServletRequest.setAttribute("option", ov);
         httpServletRequest.setAttribute("adminCommons", adminCommons);
     }
