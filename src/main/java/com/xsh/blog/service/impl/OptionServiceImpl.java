@@ -5,10 +5,12 @@ import com.xsh.blog.model.Vo.OptionVo;
 import com.xsh.blog.model.Vo.OptionVoExample;
 import com.xsh.blog.service.IOptionService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.SQLSyntaxErrorException;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +57,15 @@ public class OptionServiceImpl implements IOptionService {
 
     @Override
     public OptionVo getOptionByName(String name) {
-        return optionDao.selectByPrimaryKey(name);
+        OptionVo optionVo = null;
+
+        try {
+            optionVo = optionDao.selectByPrimaryKey(name);
+        }catch (BadSqlGrammarException e){
+            log.error("SQL执行错误" + e.getMessage());
+        }
+
+        return optionVo;
     }
 
     @Override

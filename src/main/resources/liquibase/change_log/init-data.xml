@@ -152,7 +152,7 @@
             <column name="uid" valueNumeric="1"/>
             <column name="username" value="admin"/>
             <column name="password" value="a66abb5684c45962d887564f08346e8d"/>
-            <column name="email" value="346022421@qq.com"/>
+            <column name="email" value="feverwind@163.com"/>
             <column name="home_url"/>
             <column name="screen_name" value="admin"/>
             <column name="created" valueNumeric="1521789380"/>
