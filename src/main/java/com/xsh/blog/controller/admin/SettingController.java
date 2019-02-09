@@ -52,6 +52,11 @@ public class SettingController extends BaseController {
         if (options.get("site_record") == null) {
             options.put("site_record", "");
         }
+
+        if (options.get("site_druidpassword") == null) {
+            options.put("site_druidpassword", "");
+        }
+
         request.setAttribute("options", options);
         return "admin/setting";
     }
