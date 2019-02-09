@@ -27,7 +27,7 @@ spring:
         reset-enable: true
         login-username: admin
         login-password: feverwind
-#      allow: 127.0.0.1
+        allow:
 
 
   thymeleaf:

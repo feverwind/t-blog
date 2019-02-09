@@ -1,6 +1,5 @@
 package com.xsh.blog.controller.admin;
 
-import com.xsh.blog.config.DruidConfiguration;
 import com.xsh.blog.constant.WebConst;
 import com.xsh.blog.controller.BaseController;
 import com.xsh.blog.dto.LogActions;
