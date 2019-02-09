@@ -1,5 +1,6 @@
 package com.xsh.blog.controller.admin;
 
+import com.xsh.blog.config.DruidConfiguration;
 import com.xsh.blog.constant.WebConst;
 import com.xsh.blog.controller.BaseController;
 import com.xsh.blog.dto.LogActions;
@@ -53,10 +54,6 @@ public class SettingController extends BaseController {
             options.put("site_record", "");
         }
 
-        if (options.get("site_druidpassword") == null) {
-            options.put("site_druidpassword", "");
-        }
-
         request.setAttribute("options", options);
         return "admin/setting";
     }
@@ -78,6 +75,7 @@ public class SettingController extends BaseController {
             if (StringUtils.isNotBlank(site_theme)) {
                 BaseController.THEME = "themes/" + site_theme;
             }
+
             logService.insertLog(LogActions.SYS_SETTING.getAction(), GsonUtils.toJsonString(querys), request.getRemoteAddr(), this.getUid(request));
             return RestResponseBo.ok();
         } catch (Exception e) {
