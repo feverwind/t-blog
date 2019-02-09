@@ -25,4 +25,4 @@ nbdist/
 .nb-gradle/
 
 ### dev 环境的用户名和密码不上传 ###
-application-dev.yml
+src/main/resources/application-dev.yml
