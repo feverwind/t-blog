@@ -1,10 +1,11 @@
 ### 来源说明
-本项目fork 自 [t-blog](https://github.com/xieshuang/t-blog)，继承了核心框架。
-t-blog 参考了 [My blog](https://github.com/ZHENFENG13/My-Blog)
+本项目fork 自 [t-blog](https://github.com/xieshuang/t-blog)，继承了他的框架。t-blog 参考了 [My blog](https://github.com/ZHENFENG13/My-Blog)
+
 我主要做了这些事情：
 1. 升级到springboot 2+
 2. 打开Druid监控界面
 3. 使用了LOMBOK
+4. 修改了几个bug
 
 ### 1.涉及技术及工具
 
