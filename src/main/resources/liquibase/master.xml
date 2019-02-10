@@ -7,5 +7,6 @@
 
     <include file="classpath:liquibase/change_log/init-table.xml" relativeToChangelogFile="false"/>
     <include file="classpath:liquibase/change_log/init-data.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:liquibase/change_log/modify-admin-group.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>
